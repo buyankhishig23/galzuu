@@ -119,14 +119,14 @@ class _MainWrapperState extends State<MainWrapper> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.videogame_asset),
-            label: 'Game',
+            label: 'Тоглоом',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Shop'),
+          BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Дэлгүүр'),
           BottomNavigationBarItem(
             icon: Icon(Icons.group_add),
-            label: 'Add Friend',
+            label: 'Найз нэмэх',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профайл'),
         ],
       ),
     );

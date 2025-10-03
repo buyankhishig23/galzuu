@@ -4,11 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 class AppThemes {
   static final darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: const Color(0xFF121212), // Background
-    primaryColor: const Color(0xFFE63946), // Primary
+    scaffoldBackgroundColor: const Color(0xFF121212),
+    primaryColor: const Color(0xFFE63946),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        backgroundColor: const Color(0xFFE63946),
+        foregroundColor: Colors.white,
+        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF121212),
-      foregroundColor: Color(0xFFF5F5F7), // Text
+      foregroundColor: Color(0xFFF5F5F7),
       elevation: 0,
     ),
     textTheme: GoogleFonts.comfortaaTextTheme().apply(
@@ -17,8 +26,8 @@ class AppThemes {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFF121212),
-      selectedItemColor: Color(0xFFFFB703), // Active
-      unselectedItemColor: Color(0xFF6E6E73), // Inactive
+      selectedItemColor: Color(0xFFFFB703),
+      unselectedItemColor: Color(0xFF6E6E73),
     ),
     dividerColor: Colors.white24,
     colorScheme: const ColorScheme.dark(
@@ -32,11 +41,20 @@ class AppThemes {
 
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: const Color(0xFFFFF8F0), // Background
-    primaryColor: const Color(0xFFE63946), // Primary
+    scaffoldBackgroundColor: const Color(0xFFFFF8F0),
+    primaryColor: const Color(0xFFE63946),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        backgroundColor: const Color(0xFFE63946),
+        foregroundColor: Colors.white,
+        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFFFFF8F0),
-      foregroundColor: Color(0xFF1D1D1F), // Text
+      foregroundColor: Color(0xFF1D1D1F),
       elevation: 0,
     ),
     textTheme: GoogleFonts.comfortaaTextTheme().apply(
@@ -45,8 +63,8 @@ class AppThemes {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFFFFF8F0),
-      selectedItemColor: Color(0xFFE63946), // Active
-      unselectedItemColor: Color(0xFF8E8E93), // Inactive
+      selectedItemColor: Color(0xFFE63946),
+      unselectedItemColor: Color(0xFF8E8E93),
     ),
     dividerColor: Colors.black12,
     colorScheme: const ColorScheme.light(

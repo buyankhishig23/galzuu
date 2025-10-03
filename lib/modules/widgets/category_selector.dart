@@ -1,81 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:galzuu/modules/screens/category_screen.dart';
+import 'package:galzuu/modules/model/Games.dart';
+
+import '../screens/question_screen.dart';
 
 class CategorySelector extends StatelessWidget {
   final String feedTitle;
-  final String feedImage;
-  final List<String> categories;
+  final int gameId;
+  final List<Conf> confs;
 
   const CategorySelector({
     super.key,
     required this.feedTitle,
-    required this.feedImage,
-    required this.categories,
+    required this.gameId,
+    required this.confs,
   });
+
+  String getType(Conf conf) {
+    if ((conf.type ?? '').isNotEmpty) return conf.type!;
+    if (gameId == 1) return 'normal';
+    if (gameId == 2) return '21';
+    return '';
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Feed card image at top
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              feedImage,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 180,
-            ),
-          ),
-          const SizedBox(height: 16),
-
-          // Feed title
           Text(
-            "Choose Category for $feedTitle",
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            feedTitle,
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
-
-          // Vertical list of category buttons
+          const SizedBox(height: 24),
           Flexible(
             child: ListView.separated(
               shrinkWrap: true,
-              itemCount: categories.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
+              itemCount: confs.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
-                final category = categories[index];
+                final conf = confs[index];
+                final type = getType(conf);
+
                 return SizedBox(
                   width: double.infinity,
+                  height: 60,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => CategoryScreen(
-                                feedTitle: feedTitle,
-                                category: category,
-                              ),
-                        ),
-                      );
-                    },
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      backgroundColor: theme.colorScheme.primary,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      textStyle: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onPrimary,
                       ),
                     ),
-                    child: Text(category),
+                    onPressed:
+                        type.isEmpty
+                            ? null
+                            : () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (_) => QuestionScreen(
+                                        gameId: gameId,
+                                        type: type,
+                                        confId: conf.id, // ✅ id дамжууллаа
+                                      ),
+                                ),
+                              );
+                            },
+                    child: Text(
+                      conf.value ?? '',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    ),
                   ),
                 );
               },
             ),
           ),
-          const SizedBox(height: 16),
         ],
       ),
     );
