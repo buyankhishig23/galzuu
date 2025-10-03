@@ -97,8 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     final blurredImage = ImageFiltered(
                       imageFilter: ImageFilter.blur(
-                        sigmaX: index == 0 ? 0 : 5,
-                        sigmaY: index == 0 ? 0 : 5,
+                        sigmaX: index == 0 ? 0 : 2,
+                        sigmaY: index == 0 ? 0 : 2,
                       ),
                       child: imageWidget,
                     );

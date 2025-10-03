@@ -46,17 +46,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   void _next() {
     setState(() {
-      if (_currentIndex < _questions.length - 1) {
-        _currentIndex++;
-      }
+      if (_currentIndex < _questions.length - 1) _currentIndex++;
     });
   }
 
   void _prev() {
     setState(() {
-      if (_currentIndex > 0) {
-        _currentIndex--;
-      }
+      if (_currentIndex > 0) _currentIndex--;
     });
   }
 
@@ -65,29 +61,31 @@ class _QuestionScreenState extends State<QuestionScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: FutureBuilder<List<Question>>(
           future: _questionsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(color: Colors.orange),
+              return Center(
+                child: CircularProgressIndicator(
+                  color: theme.colorScheme.secondary,
+                ),
               );
             } else if (snapshot.hasError) {
               return Center(
                 child: Text(
                   'Error: ${snapshot.error}',
-                  style: const TextStyle(color: Colors.white),
+                  style: theme.textTheme.bodyMedium,
                 ),
               );
             } else if (snapshot.hasData) {
               _questions = snapshot.data!;
               if (_questions.isEmpty) {
-                return const Center(
+                return Center(
                   child: Text(
                     'No questions available',
-                    style: TextStyle(color: Colors.white),
+                    style: theme.textTheme.bodyMedium,
                   ),
                 );
               }
@@ -97,32 +95,70 @@ class _QuestionScreenState extends State<QuestionScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // header
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
-                    child: Text(
-                      "Хариул эсвэл уу",
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.redAccent,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context); // go back to previous screen
+                      },
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "Хариул ",
+                              style: TextStyle(
+                                color: theme.colorScheme.secondary,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "эсвэл ",
+                              style: TextStyle(
+                                color: theme.colorScheme.onPrimary,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "уу",
+                              style: TextStyle(
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-
-                  // shuffle button
+                  SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: _shuffle,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey[900],
+                      backgroundColor: theme.primaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 24,
+                      ),
                     ),
-                    child: const Text("Хөзөр холих"),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.shuffle, color: theme.colorScheme.onPrimary),
+                        SizedBox(width: 8), // space between icon and text
+                        Text(
+                          "Хөзөр холих",
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-
-                  // main card
                   Expanded(
                     child: Center(
                       child: AnimatedContainer(
@@ -130,7 +166,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: MediaQuery.of(context).size.height * 0.5,
                         decoration: BoxDecoration(
-                          color: Colors.orange,
+                          color: theme.colorScheme.secondary,
                           borderRadius: BorderRadius.circular(16),
                         ),
                         alignment: Alignment.center,
@@ -154,10 +190,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                   ),
                                 Text(
                                   currentQ.question ?? '',
-                                  style: const TextStyle(
+                                  style: theme.textTheme.titleMedium?.copyWith(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                    color: theme.colorScheme.onSecondary,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -168,28 +204,28 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       ),
                     ),
                   ),
-
-                  // navigation
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         IconButton(
-                          icon: const Icon(
+                          iconSize: 50,
+                          icon: Icon(
                             Icons.arrow_back,
-                            color: Colors.yellow,
+                            color: theme.colorScheme.secondary,
                           ),
                           onPressed: _prev,
                         ),
                         Text(
                           "${_currentIndex + 1}/${_questions.length}",
-                          style: const TextStyle(color: Colors.white),
+                          style: theme.textTheme.bodyMedium,
                         ),
                         IconButton(
-                          icon: const Icon(
+                          iconSize: 50,
+                          icon: Icon(
                             Icons.arrow_forward,
-                            color: Colors.yellow,
+                            color: theme.colorScheme.secondary,
                           ),
                           onPressed: _next,
                         ),
@@ -199,10 +235,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 ],
               );
             } else {
-              return const Center(
+              return Center(
                 child: Text(
-                  'No questions found',
-                  style: TextStyle(color: Colors.white),
+                  'Асуулт олдсонгүй',
+                  style: theme.textTheme.bodyMedium,
                 ),
               );
             }

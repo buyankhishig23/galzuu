@@ -8,7 +8,7 @@ class AddFriendPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Add Friend Page", style: TextStyle(fontSize: 22)),
+        child: Text("Тун удахгүй... ", style: TextStyle(fontSize: 22)),
       ),
     );
   }
