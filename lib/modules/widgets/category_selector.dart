@@ -34,7 +34,7 @@ class CategorySelector extends StatelessWidget {
           Text(
             feedTitle,
             style: theme.textTheme.titleLarge?.copyWith(
-              fontSize: 26,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class CategorySelector extends StatelessWidget {
             child: ListView.separated(
               shrinkWrap: true,
               itemCount: confs.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 16),
+              separatorBuilder: (_, __) => const SizedBox(height: 20),
               itemBuilder: (context, index) {
                 final conf = confs[index];
                 final type = getType(conf);

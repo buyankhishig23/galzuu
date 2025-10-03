@@ -132,7 +132,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: _shuffle,
                     style: ElevatedButton.styleFrom(
@@ -141,8 +141,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       padding: EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 24,
+                        vertical: 24,
+                        horizontal: 32,
                       ),
                     ),
                     child: Row(
@@ -209,23 +209,36 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        // Back button (flipped)
                         IconButton(
                           iconSize: 50,
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: theme.colorScheme.secondary,
+                          icon: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.rotationY(
+                              pi,
+                            ), // flip horizontally
+                            child: Image.asset(
+                              'assets/images/right-arrow.png',
+                              height: 60,
+                              width: 100,
+                            ),
                           ),
                           onPressed: _prev,
                         ),
+
+                        // Current question index
                         Text(
                           "${_currentIndex + 1}/${_questions.length}",
                           style: theme.textTheme.bodyMedium,
                         ),
+
+                        // Next button
                         IconButton(
                           iconSize: 50,
-                          icon: Icon(
-                            Icons.arrow_forward,
-                            color: theme.colorScheme.secondary,
+                          icon: Image.asset(
+                            'assets/images/right-arrow.png',
+                            height: 60,
+                            width: 100,
                           ),
                           onPressed: _next,
                         ),
