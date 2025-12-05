@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:galzuu/modules/model/Games.dart';
+import 'package:galzuu/modules/model/games.dart';
 
 import '../services/games_api_service.dart';
 import '../widgets/category_selector.dart';
@@ -74,9 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  theme.colorScheme.secondary,
-                ),
+                color: theme.colorScheme.secondary,
               ),
             );
           } else if (snapshot.hasError) {
@@ -138,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             blurredImage,
                             Container(
                               width: double.infinity,
-                              color: theme.colorScheme.surface.withOpacity(0.6),
+                              color: theme.colorScheme.surface.withValues(alpha: 0.6),
                               padding: const EdgeInsets.all(8),
                               child: Text(
                                 game.name ?? 'Game',

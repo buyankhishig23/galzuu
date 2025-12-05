@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:galzuu/modules/model/Question.dart';
+import 'package:galzuu/modules/model/question.dart';
 
 import '../services/question_api_service.dart';
 

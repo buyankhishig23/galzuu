@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required for API calls -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
-        android:label="galzuu"
+        android:label="Galzuu"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:galzuu/modules/init/dio_manager.dart';
-import 'package:galzuu/modules/model/Games.dart';
+import 'package:galzuu/modules/model/games.dart';
 
 class GamesApiService {
   final Dio _dio = DioManager.instance.dio;

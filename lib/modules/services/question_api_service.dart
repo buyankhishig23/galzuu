@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:galzuu/modules/init/dio_manager.dart';
-import 'package:galzuu/modules/model/Question.dart';
+import 'package:galzuu/modules/model/question.dart';
 
 class QuestionsApiService {
   final Dio _dio = DioManager.instance.dio;

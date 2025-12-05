@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galzuu/modules/model/Games.dart';
+import 'package:galzuu/modules/model/games.dart';
 
 import '../screens/question_screen.dart';
 

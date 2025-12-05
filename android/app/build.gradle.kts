@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.galzuu"
+    namespace = "mn.careerx.galzuu"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,12 +20,11 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.galzuu"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        // Production application ID
+        applicationId = "mn.careerx.galzuu"
+        // SDK versions optimized for modern Android devices
+        minSdk = 21  // Android 5.0 (Lollipop) - covers 99%+ of devices
+        targetSdk = 34  // Latest stable Android version
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
